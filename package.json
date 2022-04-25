@@ -1,0 +1,23 @@
+{
+  "name": "WearNSlay",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kennethryandy/WearNSlay.git"
+  },
+  "keywords": [],
+  "author": "KD",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kennethryandy/WearNSlay/issues"
+  },
+  "homepage": "https://github.com/kennethryandy/WearNSlay#readme",
+  "dependencies": {
+    "reflex-grid": "^2.0.7"
+  }
+}
