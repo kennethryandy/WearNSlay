@@ -45,7 +45,7 @@ class WearNSlay
 	{
 		$path  =  self::getAssetsPath('');
 
-		wp_enqueue_style('wear-n-slay', $path . 'css/wear-n-slay.min.css', [], filemtime(get_stylesheet_directory() . '/assets/css/wear-n-slay.min.css'), 'all');
+		wp_enqueue_style('wear-n-slay', $path . 'css/wear-n-slay.min.css', ['botiga-style', 'botiga-style-min', 'botiga-custom-styles'], filemtime(get_stylesheet_directory() . '/assets/css/wear-n-slay.min.css'), 'all');
 
 		// Scripts
 		wp_enqueue_script('wear-n-slay', $path . 'js/wear-n-slay.min.js',  ['jquery'],  filemtime(get_stylesheet_directory() . '/assets/js/wear-n-slay.min.js'), true);

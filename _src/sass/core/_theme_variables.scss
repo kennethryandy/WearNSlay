@@ -1,5 +1,10 @@
 
 // Colours
+$primary: #e4d3bc;
+// $primary: #dec8ac;
+$secondary: #fff6ea;
+$gray: #e8e8e8;
+
 // For reflex grid so that we can ensure that the namespace doesn't class
 // with the GeneratePress grid. So classes now become rf-col-md-8 and rf-grid
 $reflex-prefix  : rf- !default;
