@@ -4,11 +4,11 @@
 	.sticky-header, .header-search-form {
 		box-shadow: 0 0 30px rgb(0 0 0 / 7%);
 		border-bottom: 0 solid rgba(33,33,33,0.1);
-		background: #fff;
+		background: #fff !important;
 	}
 	.site-header-inner {
-		padding-top: 16px;
-		padding-bottom: 16px;
+		padding-top: 16px !important;
+		padding-bottom: 16px !important;
 	}
 }
 
@@ -21,8 +21,8 @@
 	}
 	&-inner {
 		transition: all 0.3s ease;
-		padding-top: 32px;
-		padding-bottom: 32px;
+		padding-top: 32px !important;
+		padding-bottom: 32px !important;
 		
 	}
 }

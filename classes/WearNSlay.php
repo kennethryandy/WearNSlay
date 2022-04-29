@@ -33,9 +33,19 @@ class WearNSlay
 		// Menu Related
 		// $this->initMenus();
 
-		// Actions
+		// ACTIONS
 		// Load scripts and styles
 		add_action('wp_enqueue_scripts', 			[$this, 'init_theme_scriptsAndStyles']);
+		add_action('botiga_footer_widgets_content_end', [$this, 'wearnslay__socialMediaFooter']);
+		// Script Injection
+		add_action('wp_head', array($this, 'scripts_header_top'), 1);
+		add_action('wp_head', array($this, 'scripts_header_bottom'), 1000);
+		add_action('wp_body_open', array($this, 'scripts_body_top'));
+		add_action('wp_footer', array($this, 'scripts_body_bottom'));
+
+		// FILTERS
+		
+
 	}
 
 	/**
@@ -49,6 +59,7 @@ class WearNSlay
 
 		// Scripts
 		wp_enqueue_script('wear-n-slay', $path . 'js/wear-n-slay.min.js',  ['jquery'],  filemtime(get_stylesheet_directory() . '/assets/js/wear-n-slay.min.js'), true);
+		wp_enqueue_script('wear-n-slay-address', $path . 'js/wear-n-slay-address.min.js',  ['jquery'],  filemtime(get_stylesheet_directory() . '/assets/js/wear-n-slay-address.min.js'), true);
 	}
 
 
@@ -73,12 +84,34 @@ class WearNSlay
 			$menuSlug  =  'website-settings';
 
 			acf_add_options_page(array(
-				'page_title'  => __('Hi! Virtual - Website Settings'),
+				'page_title'  => __("WearN'Slay - Website Settings"),
 				'menu_title'  => __('Website Settings'),
 				'menu_slug'   => $menuSlug,
 				'redirect'    => false
 			));
 		}
+	}
+
+
+	public function wearnslay__socialMediaFooter() {
+		$html = "";
+		$urlTemplate = "";
+		$social_media_urls = get_field( 'social_media_url', 'options' );
+
+
+		foreach ($social_media_urls as $item => $url) {
+			if($url) {
+				$urlTemplate .= sprintf('<li class="social_links__list_item"><a class="social_links__link" target="blank" href="%s"><i class="i-%s"></i></a></li>', esc_url($url), $item);
+			}
+		}
+
+		if($urlTemplate) {
+			$html .= '<div class="container">';
+			$html .= '<div class="social_links"><ul class="social_links__list">'. $urlTemplate .'</ul></div>';
+			$html .= '</div>';
+			echo $html;
+		}
+
 	}
 
 
@@ -119,7 +152,6 @@ class WearNSlay
 	}
 
 
-
 	/**
 	 * Get the assets path for this theme.
 	 *
@@ -141,6 +173,42 @@ class WearNSlay
 	public static function images_getImageURL($filename = false)
 	{
 		return get_stylesheet_directory_uri() . '/assets/img/' . $filename;
+	}
+
+
+	/**
+	 * Renders scripts in the top of the header immediately after <head>. This is a custom hook in the theme.
+	 */
+	public function scripts_header_top()
+	{
+		the_field('script_header_top', 'options');
+	}
+
+
+	/**
+	 * Renders scripts in the top of the header immediately before </head>. This is a custom hook in the theme.
+	 */
+	public function scripts_header_bottom()
+	{
+		the_field('script_header_bottom', 'options');
+	}
+
+
+	/**
+	 * Renders scripts in the top of the body immediately after <body>. This is a custom hook in the theme.
+	 */
+	public function scripts_body_top()
+	{
+		the_field('script_body_top', 'options');
+	}
+
+
+	/**
+	 * Renders scripts in the top of the footer immediately before </body>. This is a custom hook in the theme.
+	 */
+	public function scripts_body_bottom()
+	{
+		the_field('script_body_bottom', 'options');
 	}
 
 

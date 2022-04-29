@@ -3,3 +3,40 @@
 .footer-widgets, .site-footer {
 	background-color: $gray;
 }
+
+#menu-footer>.current-menu-item>a {
+	border-bottom: 1px solid;
+}
+
+.social_links {
+	display: flex;
+	justify-content: center;
+
+	&__list {
+		display: flex;
+		align-items: center;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	&__list_item {
+		padding-bottom: 16px;
+		padding-right: 24px;
+	}
+
+	&__link {
+		font-size: 22px;
+	}
+
+	@include media-breakpoint-down(md) {
+		&__list_item {
+			padding-right: 16px;
+		}
+
+		&__link {
+			font-size: 16px;
+		}
+	}
+
+}
