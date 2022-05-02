@@ -4,3 +4,25 @@
 a, a:focus, a:hover {
 	outline: none !important;
 }
+
+.page.hentry {
+	width: 100%;
+}
+
+.woocommerce {
+}
+
+
+.wpmc-step-item {
+	width: 100%;
+}
+
+.thwcfd-field-wrapper {
+	label, span {
+		display: block;
+		width: 100%;
+	}
+	span>input {
+		width: 100%;
+	}
+}

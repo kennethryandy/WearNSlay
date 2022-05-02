@@ -22,6 +22,7 @@ class WearNSlay
 
 		// ACF initialisations
 		$this->init_ACF();
+		
 	}
 
 
@@ -44,9 +45,30 @@ class WearNSlay
 		add_action('wp_footer', array($this, 'scripts_body_bottom'));
 
 		// FILTERS
-		
+		// add_filter('woocommerce_checkout_fields', [$this, 'custom_override_checkout_fields']);
+		// add_filter('woocommerce_form_field_select', [$this, 'woo_select'], 100, 4);
+		add_filter('woocommerce_form_field_args', [$this, 'woo_form_field_args'], 100, 3);
 
 	}
+
+	function woo_form_field_args($args, $key, $value) {
+		if($key === "billing_address_barangay") {
+			$res = json_decode(wp_remote_retrieve_body(wp_remote_get("https://isaacdarcilla.github.io/philippine-addresses/barangay.json")));
+
+			$davaoBarangays = [];
+
+			foreach ($res as $data)
+			{
+				if ($data->city_code === "112402")
+				{
+					$davaoBarangays[] = __($data->brgy_name);
+				}
+			}
+			$args['options'] = $davaoBarangays;
+		}
+		return $args;
+	}
+
 
 	/**
 	 * Adds the styles and scripts to the page.
